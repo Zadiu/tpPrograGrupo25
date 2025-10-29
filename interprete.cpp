@@ -3,10 +3,10 @@
 using namespace std;
 
 int Interprete::getIDInterprete(){return idInterprete;}
-char* getNombre(){return }
-int getSuscriptores();
-bool getNotificaciones();
-bool getEstado();
+char* Interprete::getNombre(){return nombre;}
+int Interprete::getSuscriptores(){return suscriptores;}
+bool Interprete::getNotificaciones(){return notificaciones;}
+bool Interprete::getEstado(){return estado;}
 
 void Interprete::setNombre(const char* _nombre){strcpy(nombre, _nombre);}
 void Interprete::setNacionalidad(const char* _nacionalidad){strcpy(nacionalidad, _nacionalidad);}
@@ -16,4 +16,5 @@ void Interprete::setNotificaciones(bool _notificaciones){notificaciones=_notific
 
 void cargarInterprete();
 void mostrarInterprete();
+
 
