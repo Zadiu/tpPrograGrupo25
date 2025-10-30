@@ -5,7 +5,7 @@ class Cancion{
 private:
     int idCancion;
     char titulo[40];
-    int IDInterprete; //esta se hereda de interprete ????
+    int IDInterprete; 
     int genero;
     int reproducciones;
     int likes;
@@ -31,4 +31,5 @@ public:
     bool escribirDisco(int pos); //nose si vamos a usar estas funciones
     bool leerDisco(int pos);
 };
+
 
