@@ -21,7 +21,7 @@ public:
     bool getEstado();
 
     void setTitulo(const char* _titulo);
-    void setIDArtista(int _IDInterprete);
+    void setIDInterprete(int _IDInterprete);
     void setGenero(int _genero);
     void setEstado(int _estado);
 
@@ -31,5 +31,6 @@ public:
     bool escribirDisco(int pos); //nose si vamos a usar estas funciones
     bool leerDisco(int pos);
 };
+
 
 
