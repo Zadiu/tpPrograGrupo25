@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring>
 #include "interprete.h"
 #include <cstring>
 using namespace std;
@@ -17,3 +18,7 @@ void Interprete::setNotificaciones(bool _notificaciones){notificaciones=_notific
 
 void cargarInterprete();
 void mostrarInterprete();
+
+
+
+
