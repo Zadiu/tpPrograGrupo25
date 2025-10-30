@@ -1,5 +1,6 @@
 #include <iostream>
 #include "interprete.h"
+#include <cstring>
 using namespace std;
 
 int Interprete::getIDInterprete(){return idInterprete;}
@@ -16,6 +17,3 @@ void Interprete::setNotificaciones(bool _notificaciones){notificaciones=_notific
 
 void cargarInterprete();
 void mostrarInterprete();
-
-
-
