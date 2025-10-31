@@ -29,7 +29,7 @@ class Interaccion {
     void cargar();
     void mostrar();
 
-    /*  por verse
+    /*  
     bool escribirDisco(int pos);
     bool leerDisco(int pos);
     */

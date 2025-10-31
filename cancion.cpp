@@ -19,5 +19,3 @@ void Cancion::setEstado(int _estado){estado=_estado;}
 
 void cargarCancion();
 void mostrarCancion();
-
-

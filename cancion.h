@@ -31,6 +31,3 @@ public:
     bool escribirDisco(int pos); //nose si vamos a usar estas funciones
     bool leerDisco(int pos);
 };
-
-
-
