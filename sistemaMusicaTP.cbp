@@ -37,6 +37,8 @@
 		<Unit filename="interprete.cpp" />
 		<Unit filename="interprete.h" />
 		<Unit filename="main.cpp" />
+		<Unit filename="usuario.cpp" />
+		<Unit filename="usuario.h" />
 		<Extensions>
 			<lib_finder disable_auto="1" />
 		</Extensions>
