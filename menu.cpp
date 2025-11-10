@@ -1,9 +1,14 @@
 #include <iostream>
 #include <limits>
+#include <string>
 #include "menu.h"
 using namespace std;
 
-Menu::Menu(Manager& m) : _manager(m){}
+void mostrarOpcionesNormal();
+void mostrarOpcionesAdmin();
+void ejecutarOpcion();
+
+Menu::Menu(Manager& _manager) : m(_manager){}
 int Menu::pedirOpcion(){
     int opc;
     bool entradaValida=false;
@@ -18,13 +23,36 @@ int Menu::pedirOpcion(){
     }
     else{
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //descarta todos los caracteres que haya en el búfer de entrada hasta encontrar un salto de línea ('\n'),
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //descarta todos los caracteres que haya en el bÃºfer de entrada hasta encontrar un salto de lÃ­nea ('\n'),
         cout<<"Ingresa una opcion valida"<<endl;
     }
     }
 }
 
-void Menu::pedirDatosLogin(Manager& m){
+void Menu::pedirDatosRegistro(){
+    int id;
+    char nombre[40], apellido[40], dni[12], telefono[20], mail[60];
+    bool suscriptor;
+
+    cout<<"-----Registrate-----"<<endl;
+    cout<<"ID: "<<endl;
+    cin>>id;
+    cout<<"Nombre: ";
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin.getline(nombre, 40);
+    cout<<"Apellido: ";
+    cin.getline(apellido, 40);
+    cout<<"DNI: ";
+    cin.getline(dni, 12);
+    cout<<"Telefono: ";
+    cin.getline(telefono, 20);
+    cout<<"Mail: ";
+    cin.getline(mail, 60);
+
+    m.intentarRegistro(id, nombre, apellido, dni, mail, telefono);
+}
+
+void Menu::pedirDatosLogin(){
     int id;
     char mail[60];
     cout<<"---Inicia sesion con tus datos---"<<endl;
@@ -36,10 +64,10 @@ void Menu::pedirDatosLogin(Manager& m){
     // m.intentarLogin(id,mail);
 
 }
-void Menu::manejarMenuInicio(Manager& m){
+void Menu::manejarMenuInicio(){
     int opc;
     do{
-    cout<<"---SISTEMA DE REPRODUCCIÓN DE MUSICA---"<<endl;
+    cout<<"---SISTEMA DE REPRODUCCIÃ“N DE MUSICA---"<<endl;
     cout<<"1. Iniciar sesion"<<endl;
     cout<<"2. Registrarse"<<endl;
     cout<<"0. Salir"<<endl;
@@ -48,10 +76,10 @@ void Menu::manejarMenuInicio(Manager& m){
     opc=pedirOpcion();
 
     if(opc==1){
-        pedirDatosLogin(m);
+        pedirDatosLogin();
     }
     else if(opc==2){
-        //pedirDatosRegistro();
+        pedirDatosRegistro();
     }
     else{
         cout<<"Gracias por usar nuestra aplicacion!"<<endl;
@@ -64,7 +92,3 @@ void Menu::manejarMenu(){
     manejarMenuInicio();
 }
 
-void mostrarOpcionesNormal();
-void mostrarOpcionesAdmin();
-void ejecutarOpcion();
-void pedirDatosRegistro();
