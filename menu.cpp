@@ -9,6 +9,7 @@ void mostrarOpcionesAdmin();
 void ejecutarOpcion();
 
 Menu::Menu(Manager& _manager) : m(_manager){}
+
 int Menu::pedirOpcion(){
     int opc;
     bool entradaValida=false;
@@ -23,7 +24,7 @@ int Menu::pedirOpcion(){
     }
     else{
         std::cin.clear();
-        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //descarta todos los caracteres que haya en el bÃºfer de entrada hasta encontrar un salto de lÃ­nea ('\n'),
+        std::cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); //descarta todos los caracteres que haya en el búfer de entrada hasta encontrar un salto de línea ('\n'),
         cout<<"Ingresa una opcion valida"<<endl;
     }
     }
@@ -67,7 +68,7 @@ void Menu::pedirDatosLogin(){
 void Menu::manejarMenuInicio(){
     int opc;
     do{
-    cout<<"---SISTEMA DE REPRODUCCIÃ“N DE MUSICA---"<<endl;
+    cout<<"---SISTEMA DE REPRODUCCIÓN DE MUSICA---"<<endl;
     cout<<"1. Iniciar sesion"<<endl;
     cout<<"2. Registrarse"<<endl;
     cout<<"0. Salir"<<endl;

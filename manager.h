@@ -1,4 +1,5 @@
 #pragma once
+#include "usuario.h"
 
 class Manager{
 public:

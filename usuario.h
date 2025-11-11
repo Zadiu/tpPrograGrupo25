@@ -11,6 +11,10 @@ private:
     bool suscriptor;
     bool estado;
 public:
+    //constructor
+    Usuario();
+    Usuario(int _id, const char* _nombre, const char* _apellido, const char* _dni, const char* _telefono, const char* _mail);
+
     // getters
     int getID();
     char* getNombre();

@@ -1,5 +1,17 @@
 #include "usuario.h"
+#include <cstring>
 #include <iostream>
+
+Usuario::Usuario(){;}
+
+Usuario::Usuario(int _id, const char* _nombre, const char* _apellido, const char* _dni, const char* _telefono, const char* _mail){
+    id=_id;
+    strcpy(nombre, _nombre);
+    strcpy(apellido, _apellido);
+    strcpy(dni, _dni);
+    strcpy(telefono, _telefono);
+    strcpy(mail, _mail);
+}
 
 int Usuario::getID(){return id;}
 char* Usuario::getNombre(){return nombre;}

@@ -5,9 +5,6 @@
 #include "manager.h"
 using namespace std;
 
-bool Manager::cargarDatosDesdeArchivos();
-void Manager::agregarUsuario(const Usuario& nuevoUsuario);
-
 bool Manager::intentarRegistro(int idUsuario, const char* nombre, const char* apellido, const char* dni, const char* mail, const char* telefono){
     FILE *pFileUsuarios = fopen("usuarios.dat", "rb");
 
@@ -38,7 +35,14 @@ bool Manager::intentarRegistro(int idUsuario, const char* nombre, const char* ap
         }
 
     }
+    Usuario nuevoUsuario(idUsuario, nombre, apellido, dni, telefono, mail);
+
+    //luego agregamos el usuario al archivo .dat y luego a la ram, en ese orden
+
 }
 // bool Manager::intentarLogin(int ID, const char* mail){
     //abro el archivo para revisar q coincidan los datos
 
+
+bool Manager::cargarDatosDesdeArchivos(){;}
+void Manager::agregarUsuario(const Usuario& nuevoUsuario){;}
