@@ -66,7 +66,8 @@ void Interaccion::mostrar() {
         break;
         case 5: 
         cout << "Eliminado de Playlist: " << idPlaylist << endl;
-        defautl:
+        break;
+        default:
         cout << "Interaccion desconocida." << endl;
         cout << "Tipo (" << tipo << ")" << endl;
         break;
