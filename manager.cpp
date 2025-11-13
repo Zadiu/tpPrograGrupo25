@@ -5,12 +5,12 @@
 #include "manager.h"
 using namespace std;
 
-// inicializador del repositorio
 Manager::Manager(Repositorio* repo) {
     _repo = repo;
-} 
+}
 
 bool Manager::intentarRegistro(int idUsuario, const char* nombre, const char* apellido, const char* dni, const char* mail, const char* telefono){
+
     FILE *pFileUsuarios = fopen("usuarios.dat", "rb");
 
     if(pFileUsuarios==nullptr){
@@ -40,10 +40,19 @@ bool Manager::intentarRegistro(int idUsuario, const char* nombre, const char* ap
         }
 
     }
+
     Usuario nuevoUsuario(idUsuario, nombre, apellido, dni, telefono, mail);
 
     //luego agregamos el usuario al archivo .dat y luego a la ram, en ese orden
+    if(guardarUsuarioEnArchivo(nuevoUsuario)){
+        _repo -> agregarUsuario(nuevoUsuario);
+        return true;
+        }
+        else{
+            return false;
+        }
 }
+
 // bool Manager::intentarLogin(int ID, const char* mail){
     //abro el archivo para revisar q coincidan los datos
 
@@ -73,14 +82,17 @@ bool Manager::cargarDatosDesdeArchivos(){
     fclose(pFileUsuarios);
     return true;
 }
-void Manager::agregarUsuario(const Usuario& nuevoUsuario){
+
+bool Manager::guardarUsuarioEnArchivo(const Usuario& nuevoUsuario){
     FILE *pFileUsuarios = fopen("usuarios.dat", "ab");
 
     if(pFileUsuarios==nullptr){
         cout<<"No se pudo abrir el archivo"<<endl;
-        return;
+        return false;
     }
 
     fwrite(&nuevoUsuario, sizeof(Usuario), 1, pFileUsuarios);
     fclose(pFileUsuarios);
+    return true;
+
 }

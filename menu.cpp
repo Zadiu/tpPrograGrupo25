@@ -50,7 +50,12 @@ void Menu::pedirDatosRegistro(){
     cout<<"Mail: ";
     cin.getline(mail, 60);
 
-    m.intentarRegistro(id, nombre, apellido, dni, mail, telefono);
+    if(m.intentarRegistro(id, nombre, apellido, dni, mail, telefono)){
+        cout<<"Usuario registrado correctamente!"<<endl;
+    }
+    else{
+        cout<<"Registro fallido, intenta denuevo!"<<endl;
+    }
 }
 
 void Menu::pedirDatosLogin(){
@@ -68,20 +73,22 @@ void Menu::pedirDatosLogin(){
 void Menu::manejarMenuInicio(){
     int opc;
     do{
-    cout<<"---SISTEMA DE REPRODUCCIÓN DE MUSICA---"<<endl;
+    cout<<"---SISTEMA DE REPRODUCCION DE MUSICA---"<<endl;
     cout<<"1. Iniciar sesion"<<endl;
     cout<<"2. Registrarse"<<endl;
     cout<<"0. Salir"<<endl;
     cout<<"----------------------------------------"<<endl;
 
     opc=pedirOpcion();
+    system("pause");
+    system("cls");
 
     if(opc==1){
         pedirDatosLogin();
     }
     else if(opc==2){
         pedirDatosRegistro();
-    }
+        }
     else{
         cout<<"Gracias por usar nuestra aplicacion!"<<endl;
     }
