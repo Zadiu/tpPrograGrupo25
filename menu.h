@@ -12,6 +12,8 @@ private:
     void pedirDatosLogin();
 public:
     void manejarMenuInicio();
+    void manejarMenuAdmin();
+    void manejarMenuUsuario();
     void manejarMenu(); //maneja todos los metodos de abajo
     Menu(Manager& _manager);
 };
