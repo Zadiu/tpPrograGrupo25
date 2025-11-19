@@ -9,19 +9,28 @@ Manager::Manager(Repositorio* repo) {
     _repo = repo;
 }
 
+bool seguirArtista();
+bool dejarDeSeguirArtista();
+
 bool Manager::intentarRegistro(int idUsuario, const char* nombre, const char* apellido, const char* dni, const char* mail, const char* telefono){
 
+    //el primer usuario creado sera admin, los demas seran usuarios
     FILE *pFileUsuarios = fopen("usuarios.dat", "rb");
-
-    if(pFileUsuarios==nullptr){
-        cout<<"No se pudo abrir el archivo"<<endl;
-        return false;
-    }
+    bool esAdmin_=true;
 
     Usuario u;
 
-    //aca va a leer para verificar q no exista un usuario con el mismo id o mail
-    while(fread(&u, sizeof(u), 1, pFileUsuarios)){
+    if(pFileUsuarios!=nullptr){
+
+        //si encuentra al menos un archivo, entonces no es el primero por lo tanto no sera admin
+        if((fread(&u, sizeof(u), 1, pFileUsuarios)==1)){
+            esAdmin_=false;
+
+            //posiciono al inicio denuevo
+            fseek(pFileUsuarios, 0, SEEK_SET);
+
+        //aca va a leer para verificar q no exista un usuario con el mismo id o mail
+        while(fread(&u, sizeof(u), 1, pFileUsuarios)){
 
         //verificar ID
         if(u.getID()==idUsuario){
@@ -40,8 +49,12 @@ bool Manager::intentarRegistro(int idUsuario, const char* nombre, const char* ap
         }
 
     }
+    fclose(pFileUsuarios);
+    }
+    }
 
-    Usuario nuevoUsuario(idUsuario, nombre, apellido, dni, telefono, mail);
+
+    Usuario nuevoUsuario(idUsuario, nombre, apellido, dni, telefono, mail, esAdmin_);
 
     //luego agregamos el usuario al archivo .dat y luego a la ram, en ese orden
     if(guardarUsuarioEnArchivo(nuevoUsuario)){
@@ -53,9 +66,27 @@ bool Manager::intentarRegistro(int idUsuario, const char* nombre, const char* ap
         }
 }
 
-// bool Manager::intentarLogin(int ID, const char* mail){
-    //abro el archivo para revisar q coincidan los datos
+bool Manager::intentarLogin(int idUsuario, const char* mail, Usuario &usuarioLogueado){
+    FILE *pFileUsuarios = fopen("usuarios.dat", "rb");
 
+    if(pFileUsuarios==nullptr){
+        cout<<"No se pudo abrir el archivo"<<endl;
+        return false;
+    }
+
+    Usuario u;
+
+    while(fread(&u, sizeof(u), 1, pFileUsuarios)){
+        //verificar ID y MAIL
+        if(u.getID()==idUsuario && strcmp(u.getMail(), mail)==0){
+                usuarioLogueado=u;
+                fclose(pFileUsuarios);
+                return true;
+        }
+    }
+    fclose(pFileUsuarios);
+    return false;
+}
 
 bool Manager::cargarDatosDesdeArchivos(){
     // verificar el repositorio

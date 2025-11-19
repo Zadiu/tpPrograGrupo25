@@ -4,16 +4,16 @@
 class Menu{
 private:
     Manager& m;
-    void mostrarOpcionesNormal();
+    void mostrarOpcionesUsuario();
     void mostrarOpcionesAdmin();
     int pedirOpcion();
     void ejecutarOpcion();
     void pedirDatosRegistro();
-    void pedirDatosLogin();
+    bool pedirDatosLogin(Usuario& usuarioLogueado);
 public:
-    void manejarMenuInicio();
+    bool manejarMenuInicio(Usuario &usuarioLogueado);
+    void manejarMenu(); //maneja todos los metodos de abajo
     void manejarMenuAdmin();
     void manejarMenuUsuario();
-    void manejarMenu(); //maneja todos los metodos de abajo
     Menu(Manager& _manager);
 };
