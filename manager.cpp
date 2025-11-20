@@ -12,6 +12,44 @@ Manager::Manager(Repositorio* repo) {
 bool seguirArtista();
 bool dejarDeSeguirArtista();
 
+bool Manager::registrarInteraccion(int _idUsuario, int _idCancion, int _tipo, int _idPlaylist){
+    int idGenerado;
+
+    //generamos id de la nueva interaccion
+    idGenerado=generarIdInteraccion();
+
+    //creamos interaccion
+    Interaccion nuevaInt(idGenerado, _idUsuario, _idCancion, _tipo, _idPlaylist);
+
+    //guardar en el disco y la ram
+    if(guardarInteraccionEnDisco(nuevaInt)){
+        _repo->agregarInteraccion(nuevaInt);
+        return true;
+    }
+    else{
+        return false;
+    }
+}
+
+bool Manager::guardarInteraccionEnDisco(const Interaccion &nuevaInteraccion){
+    FILE *pFileInteraccion = fopen("interaccion.dat", "ab");
+
+    if(pFileInteraccion==nullptr){
+        cout<<"No se pudo abrir el archivo"<<endl;
+        return false;
+    }
+
+    fwrite(&nuevaInteraccion, sizeof(Interaccion), 1, pFileInteraccion);
+    fclose(pFileInteraccion);
+    return true;
+
+}
+
+int Manager::generarIdInteraccion(){
+    idGenerado++;
+    return idGenerado;
+}
+
 bool Manager::intentarRegistro(int idUsuario, const char* nombre, const char* apellido, const char* dni, const char* mail, const char* telefono){
 
     //el primer usuario creado sera admin, los demas seran usuarios

@@ -5,6 +5,8 @@ class Manager{
 private:
     // puntero al repositorio
     Repositorio* _repo = nullptr ; // para ver si esta incializado;
+    int idGenerado=100;
+    int generarIdInteraccion();
 public:
     // constructor
     Manager(Repositorio* repo = nullptr);
@@ -13,4 +15,6 @@ public:
     bool intentarLogin(int idUsuario, const char* mail, Usuario &usuarioLogueado);
     bool cargarDatosDesdeArchivos();
     bool guardarUsuarioEnArchivo(const Usuario& nuevoUsuario);
+    bool guardarInteraccionEnDisco(const Interaccion &nuevaInteraccion);
+    bool registrarInteraccion(int _idUsuario, int _idCancion, int _tipo, int _idPlaylist);
 };
